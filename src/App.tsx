@@ -1,13 +1,19 @@
 import { Box, Heading, Stack } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
-import { Checkbox } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
-import { IconButton } from "@chakra-ui/react";
 import { Card, CardBody } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
+import { Checkbox } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
+import TodoItem from ".";
 
 function App() {
+  const checked = function () {
+    let element = document.getElementById("list");
+    element?.classList.remove("unchecked");
+    element?.classList.add("checked");
+  };
   return (
     <>
       <Box bg="black" color="white" textAlign="justify">
@@ -21,107 +27,27 @@ function App() {
         >
           Chores ToDo List
         </Heading>
-        <Checkbox
-          colorScheme="green"
-          padding="15px"
-          borderColor="green"
-          paddingLeft="460px"
-        >
-          Create Guest Experience
-        </Checkbox>
-        <IconButton
-          aria-label="Delete List"
-          colorScheme="red"
-          size="sm"
-          marginTop="12px"
-          marginLeft="180px"
-          icon={<DeleteIcon w={4} h={4} />}
-        />
-        <br />
-        <Checkbox
-          colorScheme="green"
-          padding="15px"
-          borderColor="green"
-          paddingLeft="460px"
-        >
-          Document current CI/CD process
-        </Checkbox>
-        <IconButton
-          aria-label="Delete List"
-          colorScheme="red"
-          size="sm"
-          marginTop="12px"
-          marginLeft="120px"
-          icon={<DeleteIcon w={4} h={4} />}
-        />
-        <br />
-        <Checkbox
-          colorScheme="green"
-          padding="15px"
-          borderColor="green"
-          paddingLeft="460px"
-        >
-          Perform Code Review for Final Pillow-Talk release
-        </Checkbox>
-        <IconButton
-          aria-label="Delete List"
-          colorScheme="red"
-          size="sm"
-          marginTop="12px"
-          marginLeft="2px"
-          icon={<DeleteIcon w={4} h={4} />}
-        />
-        <br />
-        <Checkbox
-          colorScheme="green"
-          padding="15px"
-          borderColor="green"
-          paddingLeft="460px"
-        >
-          Implement new Color Palette from Design Team
-        </Checkbox>
-        <IconButton
-          aria-label="Delete List"
-          colorScheme="red"
-          size="sm"
-          marginTop="12px"
-          marginLeft="15px"
-          icon={<DeleteIcon w={4} h={4} />}
-        />
-        <br />
-        <Checkbox
-          colorScheme="green"
-          padding="15px"
-          borderColor="green"
-          paddingLeft="460px"
-        >
-          Fix image uploading process for guest check-in
-        </Checkbox>
-        <IconButton
-          aria-label="Delete List"
-          colorScheme="red"
-          size="sm"
-          marginTop="12px"
-          marginLeft="16px"
-          icon={<DeleteIcon w={4} h={4} />}
-        />
-        <br />
-        <Checkbox
-          colorScheme="green"
-          padding="15px"
-          borderColor="green"
-          paddingLeft="460px"
-        >
-          Provide on-boarding documentation
-        </Checkbox>
-        <IconButton
-          aria-label="Delete List"
-          colorScheme="red"
-          size="sm"
-          marginTop="12px"
-          marginLeft="97px"
-          icon={<DeleteIcon w={4} h={4} />}
-        />
+        <ul>
+          <li className="unchecked" id="list" onClick={checked}>
+            <Checkbox
+              colorScheme="green"
+              padding="15px"
+              borderColor="green"
+              paddingLeft="460px"
+            >
+              Create Guest Experience
+            </Checkbox>
+            <IconButton
+              aria-label="Delete List"
+              colorScheme="red"
+              size="sm"
+              marginTop="12px"
+              marginLeft="180px"
+              icon={<DeleteIcon w={4} h={4} />}
+            />
+          </li>
+          <TodoItem />
+        </ul>
         <br />
       </Box>
       <Card bg="black" marginTop="-10px">
@@ -142,6 +68,7 @@ function App() {
               placeholder="Write here..."
               padding="50px"
               marginLeft="340px"
+              id="form"
             />
           </Stack>
           <Button
@@ -149,6 +76,7 @@ function App() {
             size="md"
             marginLeft="850px"
             marginTop="10px"
+            id="input"
           >
             Add Task
           </Button>
